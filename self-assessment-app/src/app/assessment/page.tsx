@@ -67,48 +67,242 @@
 //   )
 // }
 // src/app/assessment/page.tsx
+
+
+// "use client";
+
+// import { useState } from "react";
+// // import StepPart1 from "@/components/assessment/StepPart1";
+// import StepPart1 from "@/components/assessment/StepPart1";
+// import StepPart2 from "@/components/assessment/StepPart2";
+// import StepPart3 from "@/components/assessment/StepPart3";
+// import StepPart4 from "@/components/assessment/StepPart4";
+// import StepPart5 from "@/components/assessment/StepPart5";
+// // import StepPart3 ... etc.
+// import type { FC } from "react";
+
+// // const steps = [StepPart1, StepPart2]; // Add all your steps here
+// const steps: FC[] = [StepPart1, StepPart2, StepPart3, StepPart4, StepPart5];
+
+// export default function AssessmentPage() {
+//   const [currentStep, setCurrentStep] = useState(0);
+//   const StepComponent = steps[currentStep];
+
+//   return (
+//     <div className="max-w-2xl mx-auto p-4 space-y-6">
+      
+//       {StepComponent ? <StepComponent /> : null}
+
+//       <div className="flex justify-between pt-4">
+//         <button
+//           onClick={() => setCurrentStep((prev) => Math.max(prev - 1, 0))}
+//           disabled={currentStep === 0}
+//           className="bg-gray-200 text-black px-4 py-2 rounded disabled:opacity-50"
+//         >
+//           Back
+//         </button>
+
+//         <button
+//           onClick={() => setCurrentStep((prev) => Math.min(prev + 1, steps.length - 1))}
+//           disabled={currentStep === steps.length - 1}
+//           className="bg-blue-500 text-white px-4 py-2 rounded disabled:opacity-50"
+//         >
+//           Next
+//         </button>
+//       </div>
+//       {/* {StepComponent ? <StepComponent /> : null} */}
+//     </div>
+//   );
+// }
+
+// "use client";
+
+// import { useState } from "react";
+// import StepPart1 from "@/components/assessment/StepPart1";
+// import StepPart2 from "@/components/assessment/StepPart2";
+// import StepPart3 from "@/components/assessment/StepPart3";
+// import StepPart4 from "@/components/assessment/StepPart4";
+// import StepPart5 from "@/components/assessment/StepPart5";
+
+// export default function AssessmentPage() {
+//   const [selectedPart, setSelectedPart] = useState<number | null>(null);
+
+//   const handleSelect = (index: number) => {
+//     setSelectedPart(index);
+//   };
+
+//   const handleBack = () => {
+//     setSelectedPart(null);
+//   };
+
+//   const parts = [
+//     { title: "Part 1: Think & Imagine", component: <StepPart1 /> },
+//     { title: "Part 2: Emotions & Feelings", component: <StepPart2 /> },
+//     { title: "Part 3: Act & Behave", component: <StepPart3 /> },
+//     { title: "Part 4: Interactions", component: <StepPart4 /> },
+//     { title: "Part 5: Adaptability", component: <StepPart5 /> },
+//   ];
+
+//   return (
+//     <div className="max-w-4xl mx-auto p-6">
+//       {selectedPart === null ? (
+//         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+//           {parts.map((part, index) => (
+//             <button
+//               key={index}
+//               onClick={() => handleSelect(index)}
+//               className="border border-blue-400 hover:bg-blue-100 transition rounded-xl p-6 text-left shadow-md"
+//             >
+//               <h2 className="text-xl font-semibold text-blue-600">{part.title}</h2>
+//               <p className="text-sm text-gray-600 mt-2">Start this section</p>
+//             </button>
+//           ))}
+//         </div>
+//       ) : (
+//         <div>
+//           <div className="mb-4">
+//             <button
+//               onClick={handleBack}
+//               className="text-sm text-blue-500 hover:underline"
+//             >
+//               ← Back to Parts
+//             </button>
+//           </div>
+//           {/* {parts[selectedPart].component} */}
+//           {selectedPart !== null && parts[selectedPart]?.component}
+//         </div>
+//       )}
+//     </div>
+//   );
+// }
+
 "use client";
 
 import { useState } from "react";
-// import StepPart1 from "@/components/assessment/StepPart1";
+import { motion, AnimatePresence } from "framer-motion";
 import StepPart1 from "@/components/assessment/StepPart1";
 import StepPart2 from "@/components/assessment/StepPart2";
 import StepPart3 from "@/components/assessment/StepPart3";
 import StepPart4 from "@/components/assessment/StepPart4";
 import StepPart5 from "@/components/assessment/StepPart5";
-// import StepPart3 ... etc.
-import type { FC } from "react";
 
-// const steps = [StepPart1, StepPart2]; // Add all your steps here
-const steps: FC[] = [StepPart1, StepPart2, StepPart3, StepPart4, StepPart5];
+const partTitles = [
+  "How I Think & Imagine",
+  "How I Feel",
+  "How I Act",
+  "How I Work with Others",
+  "How I See Myself",
+];
+
+const steps = [StepPart1, StepPart2, StepPart3, StepPart4, StepPart5];
 
 export default function AssessmentPage() {
-  const [currentStep, setCurrentStep] = useState(0);
-  const StepComponent = steps[currentStep];
+  const [currentStep, setCurrentStep] = useState<number | null>(null);
+
+  const StepComponent = currentStep !== null ? steps[currentStep] : null;
+
+  // return (
+  //   <div className="max-w-3xl mx-auto p-4 space-y-6">
+  //     {currentStep === null ? (
+  //       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+  //         {partTitles.map((title, index) => (
+  //           <button
+  //             key={index}
+  //             onClick={() => setCurrentStep(index)}
+  //             className="p-6 bg-white shadow-md rounded-lg border hover:scale-[1.03] transition transform duration-200 ease-in-out text-left"
+  //           >
+  //             <h2 className="text-xl font-semibold">{`Part ${index + 1}`}</h2>
+  //             <p className="text-gray-600">{title}</p>
+  //           </button>
+  //         ))}
+  //       </div>
+  //     ) : (
+  //       <div>
+  //         {StepComponent && <StepComponent />}
+
+  //         <div className="flex justify-between pt-6">
+  //           <button
+  //             onClick={() => setCurrentStep(null)}
+  //             className="bg-gray-200 text-black px-4 py-2 rounded"
+  //           >
+  //             Back to All Parts
+  //           </button>
+  //           <button
+  //             onClick={() =>
+  //               setCurrentStep((prev) =>
+  //                 prev !== null && prev < steps.length - 1 ? prev + 1 : prev
+  //               )
+  //             }
+  //             disabled={currentStep === steps.length - 1}
+  //             className="bg-blue-500 text-white px-4 py-2 rounded disabled:opacity-50"
+  //           >
+  //             Next Part
+  //           </button>
+  //         </div>
+  //       </div>
+  //     )}
+  //   </div>
+  // );
+
+
 
   return (
-    <div className="max-w-2xl mx-auto p-4 space-y-6">
-      
-      {StepComponent ? <StepComponent /> : null}
-
-      <div className="flex justify-between pt-4">
-        <button
-          onClick={() => setCurrentStep((prev) => Math.max(prev - 1, 0))}
-          disabled={currentStep === 0}
-          className="bg-gray-200 text-black px-4 py-2 rounded disabled:opacity-50"
+  <div className="max-w-3xl mx-auto p-4 space-y-6">
+    <AnimatePresence mode="wait">
+      {currentStep === null ? (
+        <motion.div
+          key="part-selection"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          transition={{ duration: 0.3 }}
+          className="grid grid-cols-1 sm:grid-cols-2 gap-4"
         >
-          Back
-        </button>
-
-        <button
-          onClick={() => setCurrentStep((prev) => Math.min(prev + 1, steps.length - 1))}
-          disabled={currentStep === steps.length - 1}
-          className="bg-blue-500 text-white px-4 py-2 rounded disabled:opacity-50"
+          {partTitles.map((title, index) => (
+            <motion.button
+              key={index}
+              onClick={() => setCurrentStep(index)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
+              className="p-6 bg-white shadow-md rounded-lg border text-left"
+            >
+              <h2 className="text-xl font-semibold">{`Part ${index + 1}`}</h2>
+              <p className="text-gray-600">{title}</p>
+            </motion.button>
+          ))}
+        </motion.div>
+      ) : (
+        <motion.div
+          key={`step-${currentStep}`}
+          initial={{ opacity: 0, x: 30 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -30 }}
+          transition={{ duration: 0.3 }}
         >
-          Next
-        </button>
-      </div>
-      {/* {StepComponent ? <StepComponent /> : null} */}
-    </div>
-  );
+          {StepComponent && <StepComponent />}
+
+          <div className="flex justify-between pt-6">
+            <button
+              onClick={() => setCurrentStep(null)}
+              className="bg-gray-200 text-black px-4 py-2 rounded"
+            >
+              Back to All Parts
+            </button>
+            <button
+              onClick={() =>
+                setCurrentStep((prev) =>
+                  prev !== null && prev < steps.length - 1 ? prev + 1 : prev
+                )
+              }
+              disabled={currentStep === steps.length - 1}
+              className="bg-blue-500 text-white px-4 py-2 rounded disabled:opacity-50"
+            >
+              Next Part
+            </button>
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  </div>
+);
 }

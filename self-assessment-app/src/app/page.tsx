@@ -106,7 +106,13 @@ import StepPart3 from "@/components/assessment/StepPart3";
 import StepPart4 from "@/components/assessment/StepPart4";
 import StepPart5 from "@/components/assessment/StepPart5";
 
-const steps: FC[] = [StepPart1, StepPart2, StepPart3, StepPart4, StepPart5];
+// const steps: FC[] = [StepPart1, StepPart2, StepPart3, StepPart4, StepPart5];
+type Props = {
+  values: Record<string, number>;
+  onChange: (id: string, value: number) => void;
+};
+const [answers, setAnswers] = useState<Record<number, Record<string, number>>>({});
+const steps: FC<Props>[] = [StepPart1, StepPart2, StepPart3, StepPart4, StepPart5];
 
 export default function AssessmentPage() {
   const [currentStep, setCurrentStep] = useState(0);
@@ -137,7 +143,20 @@ export default function AssessmentPage() {
       </div>
 
       {/* Render Current Step */}
-      {StepComponent && <StepComponent />}
+      {StepComponent && (
+  <StepComponent
+    values={answers[currentStep] || {}}
+    onChange={(id, value) => {
+      setAnswers((prev) => ({
+        ...prev,
+        [currentStep]: {
+          ...prev[currentStep],
+          [id]: value,
+        },
+      }));
+    }}
+  />
+)}
 
       {/* Navigation Buttons */}
       <div className="flex justify-between pt-4">

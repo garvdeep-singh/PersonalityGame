@@ -201,49 +201,11 @@ export default function AssessmentPage() {
 
   const StepComponent = currentStep !== null ? steps[currentStep] : null;
 
-  // return (
-  //   <div className="max-w-3xl mx-auto p-4 space-y-6">
-  //     {currentStep === null ? (
-  //       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-  //         {partTitles.map((title, index) => (
-  //           <button
-  //             key={index}
-  //             onClick={() => setCurrentStep(index)}
-  //             className="p-6 bg-white shadow-md rounded-lg border hover:scale-[1.03] transition transform duration-200 ease-in-out text-left"
-  //           >
-  //             <h2 className="text-xl font-semibold">{`Part ${index + 1}`}</h2>
-  //             <p className="text-gray-600">{title}</p>
-  //           </button>
-  //         ))}
-  //       </div>
-  //     ) : (
-  //       <div>
-  //         {StepComponent && <StepComponent />}
-
-  //         <div className="flex justify-between pt-6">
-  //           <button
-  //             onClick={() => setCurrentStep(null)}
-  //             className="bg-gray-200 text-black px-4 py-2 rounded"
-  //           >
-  //             Back to All Parts
-  //           </button>
-  //           <button
-  //             onClick={() =>
-  //               setCurrentStep((prev) =>
-  //                 prev !== null && prev < steps.length - 1 ? prev + 1 : prev
-  //               )
-  //             }
-  //             disabled={currentStep === steps.length - 1}
-  //             className="bg-blue-500 text-white px-4 py-2 rounded disabled:opacity-50"
-  //           >
-  //             Next Part
-  //           </button>
-  //         </div>
-  //       </div>
-  //     )}
-  //   </div>
-  // );
-
+  const [answers, setAnswers] = useState<Record<number, Record<string, number>>>({});
+  const isPartComplete = (index: number) => {
+  const partAnswers = answers[index];
+  return partAnswers && Object.keys(partAnswers).length === 5; // 5 questions per part
+};
 
 
   return (
@@ -260,12 +222,16 @@ export default function AssessmentPage() {
         >
           {partTitles.map((title, index) => (
             <motion.button
-              key={index}
-              onClick={() => setCurrentStep(index)}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.98 }}
-              className="p-6 bg-white shadow-md rounded-lg border text-left"
-            >
+  key={index}
+  onClick={() => setCurrentStep(index)}
+  whileHover={{ scale: 1.05 }}
+  whileTap={{ scale: 0.98 }}
+  className={`p-6 rounded-lg text-left border shadow-md ${
+    isPartComplete(index)
+      ? 'bg-green-100 border-green-500'
+      : 'bg-white border-gray-300'
+  }`}
+>
               <h2 className="text-xl font-semibold">{`Part ${index + 1}`}</h2>
               <p className="text-gray-600">{title}</p>
             </motion.button>
@@ -279,7 +245,20 @@ export default function AssessmentPage() {
           exit={{ opacity: 0, x: -30 }}
           transition={{ duration: 0.3 }}
         >
-          {StepComponent && <StepComponent />}
+          {StepComponent && (
+  <StepComponent
+    values={answers[currentStep] || {}}
+    onChange={(id: string, val: number) =>
+      setAnswers((prev) => ({
+        ...prev,
+        [currentStep]: {
+          ...prev[currentStep],
+          [id]: val,
+        },
+      }))
+    }
+  />
+)}
 
           <div className="flex justify-between pt-6">
             <button

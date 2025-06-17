@@ -58,17 +58,46 @@
 //   );
 // }
 
-import { useState } from "react";
+// import { useState } from "react";
+// import QuestionSlider from "@/app/assessment/components/QuestionSlider";
+// import { part1Traits } from "@/lib/data/part1Traits";
+// type Props = {
+//   values: Record<string, number>;
+//   onChange: (id: string, value: number) => void;
+// };
+// export default function StepPart1({ values, onChange }: Props) {
+//   const [answers, setAnswers] = useState<Record<string, number>>({});
+
+//   const handleSliderChange = (id: string, value: number) => {
+//     setAnswers((prev) => ({ ...prev, [id]: value }));
+//   };
+
+//   return (
+//     <div>
+//       <h2 className="text-2xl font-semibold mb-4">Part 1: How I Think & Imagine</h2>
+//       {part1Traits.map((trait) => (
+//         <QuestionSlider
+//           key={trait.id}
+//           id={trait.id}
+//           label={trait.label}
+//           description={trait.description}
+//           value={answers[trait.id] ?? 5} // default to 5
+//           onChange={(val) => handleSliderChange(trait.id, val)}
+//         />
+//       ))}
+//     </div>
+//   );
+// }
+
 import QuestionSlider from "@/app/assessment/components/QuestionSlider";
 import { part1Traits } from "@/lib/data/part1Traits";
 
-export default function StepPart1() {
-  const [answers, setAnswers] = useState<Record<string, number>>({});
+type Props = {
+  values: Record<string, number>;
+  onChange: (id: string, value: number) => void;
+};
 
-  const handleSliderChange = (id: string, value: number) => {
-    setAnswers((prev) => ({ ...prev, [id]: value }));
-  };
-
+export default function StepPart1({ values, onChange }: Props) {
   return (
     <div>
       <h2 className="text-2xl font-semibold mb-4">Part 1: How I Think & Imagine</h2>
@@ -78,8 +107,8 @@ export default function StepPart1() {
           id={trait.id}
           label={trait.label}
           description={trait.description}
-          value={answers[trait.id] ?? 5} // default to 5
-          onChange={(val) => handleSliderChange(trait.id, val)}
+          value={values[trait.id] ?? 5} // default to 5
+          onChange={(val) => onChange(trait.id, val)}
         />
       ))}
     </div>

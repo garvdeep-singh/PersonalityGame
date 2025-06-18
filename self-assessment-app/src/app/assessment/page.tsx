@@ -404,9 +404,159 @@
 //   );
 // }
 
+// "use client";
+
+// import { useState } from "react";
+// import { motion, AnimatePresence } from "framer-motion";
+// import StepPart1 from "@/components/assessment/StepPart1";
+// import StepPart2 from "@/components/assessment/StepPart2";
+// import StepPart3 from "@/components/assessment/StepPart3";
+// import StepPart4 from "@/components/assessment/StepPart4";
+// import StepPart5 from "@/components/assessment/StepPart5";
+
+// const partTitles = [
+//   "How I Think & Imagine",
+//   "How I Feel",
+//   "How I Act",
+//   "How I Work with Others",
+//   "How I See Myself",
+// ];
+
+// const steps = [StepPart1, StepPart2, StepPart3, StepPart4, StepPart5];
+
+// export default function AssessmentPage() {
+//   const [currentStep, setCurrentStep] = useState<number | null>(null);
+//   const StepComponent = currentStep !== null ? steps[currentStep] : null;
+//   const [answers, setAnswers] = useState<Record<number, Record<string, number>>>({});
+
+//   const isPartComplete = (index: number) => {
+//     const partAnswers = answers[index];
+//     return partAnswers && Object.keys(partAnswers).length === 5;
+//   };
+
+//   return (
+//     <div className="min-h-screen p-8 font-sans bg-background overflow-hidden">
+//       <h1 className="text-3xl sm:text-4xl font-bold text-center text-[#cb887c] mb-6">
+//         Choose a Part to Begin Your Self-Discovery 🌱
+//       </h1>
+
+//       <div className="flex items-center justify-center h-[500px] relative">
+//         <motion.div
+//           className="relative w-[350px] h-[350px] sm:w-[400px] sm:h-[400px] md:w-[450px] md:h-[450px] rounded-full"
+//           animate={{ rotate: 360 }}
+//           transition={{ repeat: Infinity, duration: 40, ease: "linear" }}
+//         >
+//           {partTitles.map((title, index) => {
+//             const angle = (360 / partTitles.length) * index;
+//             const radius = 160;
+//             const x = radius * Math.cos((angle * Math.PI) / 180);
+//             const y = radius * Math.sin((angle * Math.PI) / 180);
+
+//             return (
+//   <motion.div
+//     key={index}
+//     className="absolute"
+//     style={{
+//       top: `calc(50% + ${y}px)`,
+//       left: `calc(50% + ${x}px)`,
+//       transform: `translate(-50%, -50%) rotate(${-angle}deg)`, // keeps it upright
+//     }}
+//   >
+//     <motion.button
+//       onClick={() => setCurrentStep(index)}
+//       whileHover={{ scale: 1.1 }}
+//       whileTap={{ scale: 0.95 }}
+//       className={`p-4 rounded-2xl w-36 h-36 flex flex-col items-center justify-center shadow-md transition-all duration-300 text-center cursor-pointer ${
+//         isPartComplete(index)
+//           ? "bg-[#f8e5b9] border-2 border-[#cb887c]"
+//           : "bg-white border border-gray-300"
+//       } hover:shadow-lg hover:bg-[#fbeedb]`}
+//       style={{ transform: `rotate(${angle}deg)` }} // rotates it back to look upright
+//     >
+//       <span className="text-2xl mb-1">
+//         {["💭", "❤️", "🧠", "🤝", "👤"][index]}
+//       </span>
+//       <h2 className="text-sm font-semibold text-[#cb887c]">{`Part ${index + 1}`}</h2>
+//       <p className="text-xs text-gray-700 leading-tight">{title}</p>
+//     </motion.button>
+//   </motion.div>
+// );
+//           })}
+//         </motion.div>
+//       </div>
+
+//       {/* Modal for selected part */}
+//       <AnimatePresence>
+//         {currentStep !== null && (
+//           <motion.div
+//             key={`modal-${currentStep}`}
+//             initial={{ opacity: 0 }}
+//             animate={{ opacity: 1 }}
+//             exit={{ opacity: 0 }}
+//             className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm"
+//           >
+//             <motion.div
+//               initial={{ scale: 0.95, y: 10 }}
+//               animate={{ scale: 1, y: 0 }}
+//               exit={{ scale: 0.95, y: 10 }}
+//               transition={{ duration: 0.3 }}
+//               className="relative bg-white rounded-2xl p-8 shadow-2xl max-w-2xl w-full border border-[#e6c7a2] max-h-[90vh] overflow-y-auto"
+//             >
+//               {/* Close Button */}
+//               <button
+//                 onClick={() => setCurrentStep(null)}
+//                 className="absolute top-3 right-3 text-gray-500 hover:text-gray-800 text-xl font-bold"
+//               >
+//                 ×
+//               </button>
+
+//               {/* Step Component */}
+//               {StepComponent && (
+//                 <StepComponent
+//                   values={answers[currentStep] || {}}
+//                   onChange={(id: string, val: number) =>
+//                     setAnswers((prev) => ({
+//                       ...prev,
+//                       [currentStep]: {
+//                         ...prev[currentStep],
+//                         [id]: val,
+//                       },
+//                     }))
+//                   }
+//                 />
+//               )}
+
+//               {/* Controls */}
+//               <div className="flex justify-between pt-8">
+//                 <button
+//                   onClick={() => setCurrentStep(null)}
+//                   className="bg-[#fce3cf] text-[#cb887c] px-5 py-2 rounded-xl font-medium hover:bg-[#fbd1b5]"
+//                 >
+//                   Back to All Parts
+//                 </button>
+//                 <button
+//                   onClick={() =>
+//                     setCurrentStep((prev) =>
+//                       prev !== null && prev < steps.length - 1 ? prev + 1 : prev
+//                     )
+//                   }
+//                   disabled={currentStep === steps.length - 1}
+//                   className="bg-[#cb887c] text-white px-5 py-2 rounded-xl font-medium hover:bg-[#b86c5e] disabled:opacity-50"
+//                 >
+//                   Next Part
+//                 </button>
+//               </div>
+//             </motion.div>
+//           </motion.div>
+//         )}
+//       </AnimatePresence>
+//     </div>
+//   );
+// }
+
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import StepPart1 from "@/components/assessment/StepPart1";
 import StepPart2 from "@/components/assessment/StepPart2";
@@ -428,108 +578,141 @@ export default function AssessmentPage() {
   const [currentStep, setCurrentStep] = useState<number | null>(null);
   const StepComponent = currentStep !== null ? steps[currentStep] : null;
   const [answers, setAnswers] = useState<Record<number, Record<string, number>>>({});
+  const [rotation, setRotation] = useState(0);
 
   const isPartComplete = (index: number) => {
     const partAnswers = answers[index];
     return partAnswers && Object.keys(partAnswers).length === 5;
   };
 
+  // rotate continuously using requestAnimationFrame
+  useEffect(() => {
+    let animationFrameId: number;
+    const rotate = () => {
+      setRotation((prev) => (prev + 0.05) % 360); // slow smooth rotation
+      animationFrameId = requestAnimationFrame(rotate);
+    };
+    animationFrameId = requestAnimationFrame(rotate);
+    return () => cancelAnimationFrame(animationFrameId);
+  }, []);
+
   return (
-    <div className="min-h-screen p-8 font-sans bg-background">
+    <div className="min-h-screen p-8 font-sans bg-background overflow-hidden">
       <h1 className="text-3xl sm:text-4xl font-bold text-center text-[#cb887c] mb-6">
         Choose a Part to Begin Your Self-Discovery 🌱
       </h1>
 
-      <div className="max-w-5xl mx-auto">
-        {/* Part selection cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 py-10">
-          {partTitles.map((title, index) => (
-            <motion.button
-              key={index}
-              onClick={() => setCurrentStep(index)}
-              whileHover={{ scale: 1.06 }}
-              whileTap={{ scale: 0.98 }}
-              className={`flex flex-col items-start gap-2 p-6 rounded-2xl shadow-md transition duration-300 ease-in-out transform ${
-                isPartComplete(index)
-                  ? "bg-[#f8e5b9] border-2 border-[#cb887c]"
-                  : "bg-white border border-gray-300"
-              } hover:shadow-lg hover:bg-[#fbeedb]`}
-            >
-              <span className="text-3xl">
-                {["💭", "❤️", "🧠", "🤝", "👤"][index]}
-              </span>
-              <h2 className="text-xl font-semibold text-[#cb887c]">{`Part ${index + 1}`}</h2>
-              <p className="text-gray-700 text-sm">{title}</p>
-            </motion.button>
-          ))}
-        </div>
+      <div className="flex items-center justify-center h-[500px] relative">
+        <div className="relative w-[500px] h-[500px]">
+          {partTitles.map((title, index) => {
+            const baseAngle = (360 / partTitles.length) * index;
+            const angle = baseAngle + rotation;
+            const radius = 220;
+            const x = radius * Math.cos((angle * Math.PI) / 180);
+            const y = radius * Math.sin((angle * Math.PI) / 180);
 
-        {/* Modal for selected part */}
-        <AnimatePresence>
-          {currentStep !== null && (
-            <motion.div
-              key={`modal-${currentStep}`}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm"
-            >
+            return (
               <motion.div
-                initial={{ scale: 0.95, y: 10 }}
-                animate={{ scale: 1, y: 0 }}
-                exit={{ scale: 0.95, y: 10 }}
-                transition={{ duration: 0.3 }}
-                className="relative bg-white rounded-2xl p-8 shadow-2xl max-w-2xl w-full border border-[#e6c7a2] max-h-[90vh] overflow-y-auto"
+                key={index}
+                className="absolute"
+                style={{
+                  top: `calc(50% + ${y}px)`,
+                  left: `calc(50% + ${x}px)`,
+                  transform: `translate(-50%, -50%)`,
+                }}
+                animate={{
+                  y: [0, -4, 0, 4, 0], // subtle floating
+                }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  delay: index * 0.2,
+                }}
               >
-                {/* Close Button */}
+                <motion.button
+                  onClick={() => setCurrentStep(index)}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  className={`p-4 rounded-2xl w-46 h-46 flex flex-col items-center justify-center shadow-md transition-all duration-300 text-center cursor-pointer ${
+                    isPartComplete(index)
+                      ? "bg-[#f8e5b9] border-2 border-[#cb887c]"
+                      : "bg-white border border-gray-300"
+                  } hover:shadow-lg hover:bg-[#fbeedb]`}
+                >
+                  <span className="text-2xl mb-1">
+                    {["💭", "❤️", "🧠", "🤝", "👤"][index]}
+                  </span>
+                  <h2 className="text-sm font-semibold text-[#cb887c]">{`Part ${index + 1}`}</h2>
+                  <p className="text-xs text-gray-700 leading-tight">{title}</p>
+                </motion.button>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Modal */}
+      <AnimatePresence>
+        {currentStep !== null && (
+          <motion.div
+            key={`modal-${currentStep}`}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm"
+          >
+            <motion.div
+              initial={{ scale: 0.95, y: 10 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.95, y: 10 }}
+              transition={{ duration: 0.3 }}
+              className="relative bg-white rounded-2xl p-8 shadow-2xl max-w-2xl w-full border border-[#e6c7a2] max-h-[90vh] overflow-y-auto"
+            >
+              <button
+                onClick={() => setCurrentStep(null)}
+                className="absolute top-3 right-3 text-gray-500 hover:text-gray-800 text-xl font-bold"
+              >
+                ×
+              </button>
+
+              {StepComponent && (
+                <StepComponent
+                  values={answers[currentStep] || {}}
+                  onChange={(id: string, val: number) =>
+                    setAnswers((prev) => ({
+                      ...prev,
+                      [currentStep]: {
+                        ...prev[currentStep],
+                        [id]: val,
+                      },
+                    }))
+                  }
+                />
+              )}
+
+              <div className="flex justify-between pt-8">
                 <button
                   onClick={() => setCurrentStep(null)}
-                  className="absolute top-3 right-3 text-gray-500 hover:text-gray-800 text-xl font-bold"
+                  className="bg-[#fce3cf] text-[#cb887c] px-5 py-2 rounded-xl font-medium hover:bg-[#fbd1b5]"
                 >
-                  ×
+                  Back to All Parts
                 </button>
-
-                {/* Step Component */}
-                {StepComponent && (
-                  <StepComponent
-                    values={answers[currentStep] || {}}
-                    onChange={(id: string, val: number) =>
-                      setAnswers((prev) => ({
-                        ...prev,
-                        [currentStep]: {
-                          ...prev[currentStep],
-                          [id]: val,
-                        },
-                      }))
-                    }
-                  />
-                )}
-
-                {/* Controls */}
-                <div className="flex justify-between pt-8">
-                  <button
-                    onClick={() => setCurrentStep(null)}
-                    className="bg-[#fce3cf] text-[#cb887c] px-5 py-2 rounded-xl font-medium hover:bg-[#fbd1b5]"
-                  >
-                    Back to All Parts
-                  </button>
-                  <button
-                    onClick={() =>
-                      setCurrentStep((prev) =>
-                        prev !== null && prev < steps.length - 1 ? prev + 1 : prev
-                      )
-                    }
-                    disabled={currentStep === steps.length - 1}
-                    className="bg-[#cb887c] text-white px-5 py-2 rounded-xl font-medium hover:bg-[#b86c5e] disabled:opacity-50"
-                  >
-                    Next Part
-                  </button>
-                </div>
-              </motion.div>
+                <button
+                  onClick={() =>
+                    setCurrentStep((prev) =>
+                      prev !== null && prev < steps.length - 1 ? prev + 1 : prev
+                    )
+                  }
+                  disabled={currentStep === steps.length - 1}
+                  className="bg-[#cb887c] text-white px-5 py-2 rounded-xl font-medium hover:bg-[#b86c5e] disabled:opacity-50"
+                >
+                  Next Part
+                </button>
+              </div>
             </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

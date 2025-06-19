@@ -870,6 +870,7 @@
 "use client";
 
 import { useState } from "react";
+import { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import StepPart1 from "@/components/assessment/StepPart1";
 import StepPart2 from "@/components/assessment/StepPart2";
@@ -897,11 +898,41 @@ export default function AssessmentPage() {
     return partAnswers && Object.keys(partAnswers).length === 5;
   };
 
+  useEffect(() => {
+    const saved = localStorage.getItem("self-assessment-answers");
+    if (saved) {
+      setAnswers(JSON.parse(saved));
+    }
+  }, []);
+
+  // ✅ Save answers whenever they change
+  useEffect(() => {
+    localStorage.setItem("self-assessment-answers", JSON.stringify(answers));
+  }, [answers]);
+
+  const downloadAnswers = () => {
+  const blob = new Blob([JSON.stringify(answers, null, 2)], {
+    type: "application/json",
+  });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "self-assessment-responses.json";
+  a.click();
+  URL.revokeObjectURL(url);
+};
+
   return (
     <div className="min-h-screen w-full font-sans bg-background flex flex-col items-center px-4 py-10">
       <h1 className="text-3xl sm:text-4xl font-bold text-center text-[#cb887c] mb-10">
         Choose a Part to Begin Your Self-Discovery 🌱
       </h1>
+      <button
+  onClick={downloadAnswers}
+  className="mb-8 px-6 py-2 bg-[#cb887c] text-white rounded-xl hover:bg-[#b86c5e] transition"
+>
+  Download Responses
+</button>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-6xl">
         {partTitles.map((title, index) => (

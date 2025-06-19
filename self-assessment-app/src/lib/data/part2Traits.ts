@@ -7,14 +7,34 @@
 // ]
 export const part2Traits = [
   {
-    id: "resilience",
-    label: "Resilience",
-    description: "Ability to recover quickly from difficulties."
+    id: "emotional",
+    label: "Emotional (Intense Feelings)",
+    description: "1 = My feelings are usually pretty mild; 10 = I feel things very strongly",
   },
   {
-    id: "empathy",
-    label: "Empathy",
-    description: "Understanding and sharing the feelings of others."
+    id: "optimistic",
+    label: "Optimistic (Positive Outlook)",
+    description: "1 = Tend to expect things to go wrong; 10 = Tend to expect things to go well",
   },
-  // Add similar objects for the rest
+  {
+    id: "calm",
+    label: "Calm",
+    description: "1 = Easily get worked up or stressed; 10 = Usually stay calm, even under pressure",
+  },
+  {
+    id: "sensitive",
+    label: "Sensitive (To Moods/Atmosphere)",
+    description:
+      "1 = Not easily affected by others' moods or surroundings; 10 = Very easily pick up on and affected by others' feelings or the vibe of a place",
+  },
+  {
+    id: "patient",
+    label: "Patient",
+    description: "1 = Get easily frustrated by waiting or delays; 10 = Can wait calmly without much fuss",
+  },
+  {
+    id: "worryProne",
+    label: "Worry-Prone",
+    description: "1 = Rarely worry about things; 10 = Tend to worry a lot, even about small things",
+  },
 ];

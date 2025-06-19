@@ -7,28 +7,38 @@
 // ]
 export const part5Traits = [
   {
-    id: "selfAwareness",
-    label: "Self-Awareness",
-    description: "How well I understand my emotions, strengths, and weaknesses."
+    id: "athletic",
+    label: "Athletic (Body Smart)",
+    description: "1 = Not naturally coordinated or drawn to physical activity; 10 = Naturally good at sports/physical activities, enjoy moving",
   },
   {
-    id: "confidence",
-    label: "Confidence",
-    description: "My belief in my own abilities and decisions."
+    id: "musical",
+    label: "Musical (Rhythm/Tune Smart)",
+    description: "1 = Don't really have an ear for music or rhythm; 10 = Naturally have a good sense of rhythm, tune, or drawn to making music",
   },
   {
-    id: "selfEsteem",
-    label: "Self-Esteem",
-    description: "How much I value and respect myself."
+    id: "artistic",
+    label: "Artistic (Visually Creative)",
+    description: "1 = Don't naturally draw, paint, or have a strong visual sense; 10 = Naturally inclined to draw, sculpt, appreciate or create visual art",
   },
   {
-    id: "resilience",
-    label: "Resilience",
-    description: "My ability to recover from setbacks and keep going."
+    id: "handsOn",
+    label: "Hands-On (Good with Making/Fixing)",
+    description: "1 = Tend to be all thumbs with tools or crafts; 10 = Naturally good at building, fixing, or crafting things with my hands",
   },
   {
-    id: "growthMindset",
-    label: "Growth Mindset",
-    description: "My belief that I can grow and improve with effort."
+    id: "wordSmart",
+    label: "Word-Smart (Good with Language)",
+    description: "1 = Finding the right words can be a struggle; 10 = Naturally have a way with words, writing or speaking comes easily",
+  },
+  {
+    id: "natureConnected",
+    label: "Nature-Connected/Observant",
+    description: "1 = Don't pay much attention to the natural world; 10 = Naturally drawn to and observant of nature, plants, animals",
+  },
+  {
+    id: "sensitiveToSenses",
+    label: "Sensitive to Sights/Sounds/Textures",
+    description: "1 = Not particularly bothered by strong sensory input like bright lights, loud noises, specific textures; 10 = Easily overwhelmed by or highly aware of and affected by sensory details",
   },
 ];

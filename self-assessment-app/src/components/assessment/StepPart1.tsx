@@ -107,7 +107,7 @@ export default function StepPart1({ values, onChange }: Props) {
           id={trait.id}
           label={trait.label}
           description={trait.description}
-          value={values[trait.id] ?? 5} // default to 5
+          value={values[trait.id] ?? 0} // default to 5
           onChange={(val) => onChange(trait.id, val)}
         />
       ))}

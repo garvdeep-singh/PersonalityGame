@@ -1,44 +1,146 @@
-"use client"
+// "use client"
 
-import { Slider } from "@/components/ui/slider"
-import { Label } from "@/components/ui/label"
-import { useState } from "react"
+// import { Slider } from "@/components/ui/slider"
+// import { Label } from "@/components/ui/label"
+// import { useState } from "react"
+
+// interface TraitSliderProps {
+//   label: string
+//   min?: number
+//   max?: number
+//   step?: number
+//   onChange?: (value: number) => void
+// }
+
+// export default function TraitSlider({
+//   label,
+//   min = 1,
+//   max = 10,
+//   step = 1,
+//   onChange
+// }: TraitSliderProps) {
+//   const [value, setValue] = useState<number>(Math.floor((min + max) / 2))
+
+//   const handleChange = (val: number[]) => {
+//     setValue(val[0])
+//     onChange?.(val[0])
+//   }
+
+//   return (
+//     <div className="my-4">
+//       <div className="flex justify-between items-center mb-1">
+//         <Label className="text-md font-medium">{label}</Label>
+//         <span className="text-sm text-muted-foreground">{value}</span>
+//       </div>
+//       <Slider
+//         defaultValue={[value]}
+//         min={min}
+//         max={max}
+//         step={step}
+//         onValueChange={handleChange}
+//       />
+//     </div>
+//   )
+// }
+
+// "use client"
+
+// import { Slider } from "@/components/ui/slider"
+// import { Label } from "@/components/ui/label"
+// import { useState, useEffect } from "react"
+
+// interface TraitSliderProps {
+//   label: string
+//   min?: number
+//   max?: number
+//   step?: number
+//   onChange?: (value: number) => void
+// }
+
+// export default function TraitSlider({
+//   label,
+//   min = 1,
+//   max = 10,
+//   step = 1,
+//   onChange,
+// }: TraitSliderProps) {
+//   const [value, setValue] = useState<number>(0) // default untouched state
+//   const [touched, setTouched] = useState(false)
+
+//   useEffect(() => {
+//     if (value !== 0) {
+//       setTouched(true)
+//     }
+//   }, [value])
+
+//   const handleChange = (val: number[]) => {
+//     const newVal = val[0]
+//     if (typeof newVal === "number") {
+//       setValue(newVal)
+//       onChange?.(newVal)
+//     }
+//   }
+
+//   return (
+//     <div className="my-4">
+//       <div className="flex justify-between items-center mb-1">
+//         <Label className="text-md font-medium">{label}</Label>
+//         <span className="text-sm text-muted-foreground">{value}</span>
+//       </div>
+//       <Slider
+//         value={[value]}
+//         min={min}
+//         max={max}
+//         step={step}
+//         onValueChange={handleChange}
+//         rangeClassName={touched ? "bg-green-500" : "bg-gray-300"}
+//       />
+//     </div>
+//   )
+// }
+
+"use client";
+
+import { useState } from "react";
 
 interface TraitSliderProps {
-  label: string
-  min?: number
-  max?: number
-  step?: number
-  onChange?: (value: number) => void
+  label: string;
+  min?: number;
+  max?: number;
+  step?: number;
+  onChange?: (value: number) => void;
 }
 
 export default function TraitSlider({
   label,
-  min = 1,
+  min = 0,
   max = 10,
   step = 1,
-  onChange
+  onChange,
 }: TraitSliderProps) {
-  const [value, setValue] = useState<number>(Math.floor((min + max) / 2))
+  const [value, setValue] = useState<number>(0);
 
-  const handleChange = (val: number[]) => {
-    setValue(val[0])
-    onChange?.(val[0])
-  }
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = parseInt(e.target.value);
+    setValue(val);
+    onChange?.(val);
+  };
 
   return (
-    <div className="my-4">
+    <div className="my-6">
       <div className="flex justify-between items-center mb-1">
-        <Label className="text-md font-medium">{label}</Label>
+        <label className="text-md font-medium">{label}</label>
         <span className="text-sm text-muted-foreground">{value}</span>
       </div>
-      <Slider
-        defaultValue={[value]}
+      <input
+        type="range"
         min={min}
         max={max}
         step={step}
-        onValueChange={handleChange}
+        value={value}
+        onChange={handleChange}
+        className="w-full"
       />
     </div>
-  )
+  );
 }

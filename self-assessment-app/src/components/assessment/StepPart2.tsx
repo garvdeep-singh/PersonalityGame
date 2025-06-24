@@ -27,14 +27,14 @@ type Props = {
 export default function StepPartX({ values, onChange }: Props) {
   return (
     <div>
-      <h2 className="text-2xl font-semibold mb-4">Part 2: [Title]</h2>
+      <h2 className="text-2xl font-semibold mb-4">Part 2: How I feel and React</h2>
       {part2Traits.map((trait) => (
         <QuestionSlider
           key={trait.id}
           id={trait.id}
           label={trait.label}
           description={trait.description}
-          value={values[trait.id] ?? 5}
+          value={values[trait.id] ?? 0}
           onChange={(val) => onChange(trait.id, val)}
         />
       ))}

@@ -34,7 +34,7 @@ export default function StepPart5({ values, onChange }: Props) {
           id={trait.id}
           label={trait.label}
           description={trait.description}
-          value={values[trait.id] ?? 5}
+          value={values[trait.id] ?? 0}
           onChange={(val) => onChange(trait.id, val)}
         />
       ))}

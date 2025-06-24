@@ -133,3 +133,17 @@
   } */
 }
 
+/* === Override ShadCN Slider Default Styling === */
+
+[data-part="track"] {
+  background-color: #d1d5db !important; /* gray-300 */
+}
+
+[data-part="range"] {
+  background-color: #10b981 !important; /* emerald-500 or green-500 */
+}
+
+[data-part="thumb"] {
+  background-color: #ffffff !important;
+  border: 1px solid #9ca3af !important; /* gray-400 */
+}

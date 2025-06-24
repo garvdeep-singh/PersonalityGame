@@ -998,7 +998,7 @@ export default function AssessmentPage() {
                   onClick={() => setCurrentStep(null)}
                   className="bg-[#fce3cf] text-[#cb887c] px-5 py-2 rounded-xl font-medium hover:bg-[#fbd1b5]"
                 >
-                  Back to All Parts
+                  Back
                 </button>
                 <button
                   onClick={() =>
@@ -1009,7 +1009,7 @@ export default function AssessmentPage() {
                   disabled={currentStep === steps.length - 1}
                   className="bg-[#cb887c] text-white px-5 py-2 rounded-xl font-medium hover:bg-[#b86c5e] disabled:opacity-50"
                 >
-                  Next Part
+                  Next
                 </button>
               </div>
             </motion.div>

@@ -27,7 +27,7 @@ type Props = {
 export default function StepPart5({ values, onChange }: Props) {
   return (
     <div>
-      <h2 className="text-2xl font-semibold mb-4">Part 5: [Natural Knacks & Sensitivities (Things that Come Easily or Affect Me)]</h2>
+      <h2 className="text-2xl font-semibold mb-4">5. Natural Knacks & Sensitivities (Things that Come Easily or Affect Me)</h2>
       {part5Traits.map((trait) => (
         <QuestionSlider
           key={trait.id}

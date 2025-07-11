@@ -1405,6 +1405,12 @@ import StepPart3 from "@/components/assessment/StepPart3";
 import StepPart4 from "@/components/assessment/StepPart4";
 import StepPart5 from "@/components/assessment/StepPart5";
 
+import { part1Traits } from "@/lib/data/part1Traits";
+import { part2Traits } from "@/lib/data/part2Traits";
+import { part3Traits } from "@/lib/data/part3Traits";
+import { part4Traits } from "@/lib/data/part4Traits";
+import { part5Traits } from "@/lib/data/part5Traits";
+
 const partTitles = [
   "How I Think & Imagine",
   "How I Feel",
@@ -1421,12 +1427,22 @@ export default function AssessmentPage() {
   const StepComponent = currentStep !== null ? steps[currentStep] : null;
   const [answers, setAnswers] = useState<Record<number, Record<string, number>>>({});
 
-  const isPartComplete = (index: number) => {
+const isPartComplete = (index: number) => {
   const partAnswers = answers[index];
   if (!partAnswers) return false;
 
-  const values = Object.values(partAnswers);
-  return values.length === 5 && values.every((v) => typeof v === "number" && !isNaN(v));
+  const allTraits = [part1Traits, part2Traits, part3Traits, part4Traits, part5Traits];
+  const currentTraits = allTraits[index];
+
+  if (!currentTraits) return false; // safety check for undefined access
+
+  const expectedCount = currentTraits.length;
+  const answeredKeys = Object.keys(partAnswers);
+
+  return (
+    answeredKeys.length === expectedCount &&
+    Object.values(partAnswers).every((v) => typeof v === "number")
+  );
 };
 
   useEffect(() => {

@@ -1470,9 +1470,17 @@ const isPartComplete = (index: number) => {
 
   return (
     <div className="min-h-screen w-full font-sans bg-background flex flex-col items-center px-4 py-10">
-      <h1 className="text-3xl sm:text-4xl font-bold text-center text-[#cb887c] mb-10">
-        Know More About Your Self 🌱
-      </h1>
+      <h1 className="text-3xl sm:text-4xl font-bold text-center text-[#cb887c] mb-6">
+  Know More About Your Self 🌱
+</h1>
+
+<div className="bg-[#fff5ec] border border-[#eac7b2] text-gray-800 rounded-xl p-4 max-w-3xl text-sm sm:text-base mb-10 shadow-sm">
+  <h2 className="font-semibold mb-2 text-[#cb887c]">Instructions for You:</h2>
+  <p>
+    Think about how you are most naturally, without a lot of effort or thinking about it – like your <strong>“default settings.”</strong>
+    For each word below, rate how much it describes your natural self on a scale of <strong>1 (Not really me at all)</strong> to <strong>10 (Very much me)</strong>.
+  </p>
+</div>
 
       <button
         onClick={downloadAnswers}
@@ -1481,7 +1489,7 @@ const isPartComplete = (index: number) => {
         Download Responses
       </button>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-6xl">
+      {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-6xl">
         {partTitles.map((title, index) => (
           <motion.button
             key={index}
@@ -1501,7 +1509,52 @@ const isPartComplete = (index: number) => {
             </p>
           </motion.button>
         ))}
-      </div>
+      </div> */}
+      <div className="grid grid-cols-6 gap-6 w-full max-w-6xl">
+  {/* Row 1: Box 1, Box 2, Box 3 */}
+  {partTitles.slice(0, 3).map((title, index) => (
+    <motion.button
+      key={index}
+      onClick={() => setCurrentStep(index)}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+      className={`col-span-2 p-6 rounded-2xl h-52 flex flex-col items-center justify-center shadow-md transition-all duration-300 text-center cursor-pointer
+        ${
+          isPartComplete(index)
+            ? "bg-[#f8e5b9] border-2 border-[#cb887c]"
+            : "bg-white border border-gray-300"
+        } hover:shadow-lg hover:bg-[#fbeedb]`}
+    >
+      <span className="text-3xl mb-2">{["💭", "❤️", "🧠"][index]}</span>
+      <p className="text-base font-medium text-gray-800 mt-1 text-center leading-snug">
+        {title}
+      </p>
+    </motion.button>
+  ))}
+
+  {/* Row 2: Empty placeholder, Box 4, Box 5, Empty placeholder */}
+  <div className="col-span-1" />
+  {[3, 4].map((index) => (
+    <motion.button
+      key={index}
+      onClick={() => setCurrentStep(index)}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+      className={`col-span-2 p-6 rounded-2xl h-52 flex flex-col items-center justify-center shadow-md transition-all duration-300 text-center cursor-pointer
+        ${
+          isPartComplete(index)
+            ? "bg-[#f8e5b9] border-2 border-[#cb887c]"
+            : "bg-white border border-gray-300"
+        } hover:shadow-lg hover:bg-[#fbeedb]`}
+    >
+      <span className="text-3xl mb-2">{["🤝", "👤"][index - 3]}</span>
+      <p className="text-base font-medium text-gray-800 mt-1 text-center leading-snug">
+        {partTitles[index]}
+      </p>
+    </motion.button>
+  ))}
+  <div className="col-span-1" />
+</div>
 
       <AnimatePresence>
         {currentStep !== null && (

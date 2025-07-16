@@ -31,14 +31,17 @@ export const part5Traits = [
     label: "Word-Smart (Good with Language)",
     description: "1 = Finding the right words can be a struggle; 10 = Naturally have a way with words, writing or speaking comes easily",
   },
+
+  {
+    id: "sensitiveToSenses",
+    label: "Dramatic (Expressive Knack)",
+    description: "1 = Less expressive and more reserved, find it less natural to perform; 10 = Naturally expressive with my voice, face, and body, can easily convey emotion and enjoy performing",
+  },
+
   {
     id: "natureConnected",
     label: "Nature-Connected/Observant",
     description: "1 = Don't pay much attention to the natural world; 10 = Naturally drawn to and observant of nature, plants, animals",
   },
-  {
-    id: "sensitiveToSenses",
-    label: "Sensitive to Sights/Sounds/Textures",
-    description: "1 = Not particularly bothered by strong sensory input like bright lights, loud noises, specific textures; 10 = Easily overwhelmed by or highly aware of and affected by sensory details",
-  },
+
 ];

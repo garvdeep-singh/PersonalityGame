@@ -1,29 +1,63 @@
-# Create T3 App
+# Ikipendence Projects
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+This repository contains two web projects developed during my internship at **Ikipendence**:
 
-## What's next? How do I make an app with this?
+1. **Wall of Passion**  
+2. **Personality Game**  
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+Both projects are built using **Next.js**, **React**, **Node.js**, and other modern web technologies, focusing on interactive UI, responsive design, and dynamic content display.
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+---
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Drizzle](https://orm.drizzle.team)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+## 1. Wall of Passion
 
-## Learn More
+**Live Demo:** [Wall of Passion](https://ikipendence.com/wallofpassion)
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+**Description:**  
+Wall of Passion is a platform for users to share their personal stories, experiences, and passions. It features dynamic UI components, responsive design, and smooth animations for an engaging storytelling experience.
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+**Technologies Used:**
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+- Frontend: Next.js, React, TailwindCSS  
+- Backend: Node.js, Express.js  
+- Database: MongoDB  
+- Version Control: Git, GitHub  
 
-## How do I deploy this?
+**Features:**
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+- Users can post their personal stories and experiences.
+- Dynamic cards with front/back flip animations for content display.
+- Responsive and mobile-friendly layout.
+- Secure user authentication for posting stories.
+
+---
+
+## 2. Personality Game
+
+**Live Demo:** [Personality Game](https://ikipendence.com/personalitygame)
+
+**Description:**  
+The Personality Game allows users to discover insights about themselves through a fun, interactive quiz. It provides personalized results based on user responses.
+
+**Technologies Used:**
+
+- Frontend: Next.js, React, TailwindCSS  
+- Backend: Node.js, Express.js  
+- Database: MongoDB  
+- Version Control: Git, GitHub  
+
+**Features:**
+
+- Interactive quiz with multiple-choice questions.
+- Personalized result generation based on user inputs.
+- Engaging animations and transitions.
+- Mobile-friendly and responsive interface.
+
+---
+
+## Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/your-username/ikipendence-projects.git

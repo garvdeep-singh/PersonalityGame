@@ -1,63 +1,53 @@
-# Ikipendence Projects
+# Personality Game
 
-This repository contains two web projects developed during my internship at **Ikipendence**:
-
-1. **Wall of Passion**  
-2. **Personality Game**  
-
-Both projects are built using **Next.js**, **React**, **Node.js**, and other modern web technologies, focusing on interactive UI, responsive design, and dynamic content display.
+**Live Demo:** [Personality Game](https://ikipendence.com/personalitygame)  
+**Local Route:** `/assessment` – access the quiz locally at [http://localhost:3000/assessment](http://localhost:3000/assessment)
 
 ---
 
-## 1. Wall of Passion
+## Description
 
-**Live Demo:** [Wall of Passion](https://ikipendence.com/wallofpassion)
-
-**Description:**  
-Wall of Passion is a platform for users to share their personal stories, experiences, and passions. It features dynamic UI components, responsive design, and smooth animations for an engaging storytelling experience.
-
-**Technologies Used:**
-
-- Frontend: Next.js, React, TailwindCSS  
-- Backend: Node.js, Express.js  
-- Database: MongoDB  
-- Version Control: Git, GitHub  
-
-**Features:**
-
-- Users can post their personal stories and experiences.
-- Dynamic cards with front/back flip animations for content display.
-- Responsive and mobile-friendly layout.
-- Secure user authentication for posting stories.
+The Personality Game is an interactive web application designed to help users explore insights about themselves through a fun and engaging quiz. Users answer a series of thoughtfully crafted questions, and the app calculates and displays personalized results based on their responses. It’s an engaging way for users to reflect on their personality traits and gain self-awareness.
 
 ---
 
-## 2. Personality Game
+## Features
 
-**Live Demo:** [Personality Game](https://ikipendence.com/personalitygame)
-
-**Description:**  
-The Personality Game allows users to discover insights about themselves through a fun, interactive quiz. It provides personalized results based on user responses.
-
-**Technologies Used:**
-
-- Frontend: Next.js, React, TailwindCSS  
-- Backend: Node.js, Express.js  
-- Database: MongoDB  
-- Version Control: Git, GitHub  
-
-**Features:**
-
-- Interactive quiz with multiple-choice questions.
-- Personalized result generation based on user inputs.
-- Engaging animations and transitions.
-- Mobile-friendly and responsive interface.
+- **Interactive Multi-step Quiz:** Navigate through questions with smooth transitions.  
+- **Personalized Results:** Dynamic score calculation provides a unique result for each user.  
+- **Responsive Design:** Fully mobile-friendly and works seamlessly across devices.  
+- **Engaging UI:** Smooth animations and transitions enhance user experience.  
+- **Secure Input Handling:** Ensures safe and reliable user interactions.  
+- **Route Setup:** The quiz is hosted at `/assessment` for easy access in local development or production.
 
 ---
 
 ## Installation
 
-1. Clone the repository:
+Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/ikipendence-projects.git
+git clone https://github.com/your-username/personality-game.git
+
+```
+2. Navigate to Project Folder:
+
+```bash
+cd personality-game
+
+```
+
+3. Install dependencies:
+``` bash
+npm install
+```
+
+4. Run the development server:
+```
+npm run dev
+```
+
+5. Open browser and go to :
+```
+http://localhost:3000/assessment
+```

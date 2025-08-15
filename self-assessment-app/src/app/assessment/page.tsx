@@ -82,7 +82,7 @@ const isPartComplete = (index: number) => {
 <div className="bg-[#fff5ec] border border-[#eac7b2] text-gray-800 rounded-xl p-4 max-w-3xl text-sm sm:text-base mb-10 shadow-sm">
   <h2 className="font-semibold mb-2 text-[#cb887c]">Instructions for You:</h2>
   <p>
-    Think about how you are most naturally, without a lot of effort or thinking about it – like your <strong>“default settings.”</strong>
+    Think about how you are most naturally, without a lot of effort or thinking about it – like your “default settings.”
     For each word below, rate how much it describes your natural self on a scale of <strong>1 (Not really me at all)</strong> to <strong>10 (Very much me)</strong>.
   </p>
 </div>

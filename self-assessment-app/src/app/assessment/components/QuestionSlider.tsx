@@ -20,7 +20,8 @@ export default function WaveSlider({
   onChange,
 }: Props) {
   const [isDragging, setIsDragging] = useState(false);
-  const progressPercent = ((value - 1) / 9) * 100;
+  // const progressPercent = ((value - 1) / 9) * 100;
+  const progressPercent = 5 + ((value - 1) / 9) * 90;
 
   // Choose emoji based on value
   const getBoatEmoji = (val: number) => {
